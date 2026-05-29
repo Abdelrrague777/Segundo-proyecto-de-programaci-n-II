@@ -1,27 +1,41 @@
-from dataclasses import dataclass
+import random
+from core.cartas import Carta
 
-@dataclass
-class Card:
-    suit: str
-    rank: str
-    face_up: bool = False
 
-    @property
-    def color(self) -> str:
-        """
-        Determina automáticamente el color de la carta
-        dependiendo de su palo.
-        """
-        return "red" if self.suit in ["hearts", "diamonds"] else "black"
+class Mazo:
 
-    def flip(self):
-        """
-        Cambia el estado visual de la carta.
-        """
-        self.face_up = not self.face_up
+    PALOS = [
+        "corazones",
+        "diamantes",
+        "treboles",
+        "espadas"
+    ]
 
-    def __str__(self):
-        """
-        Representación amigable de la carta.
-        """
-        return f"{self.rank} of {self.suit}"
+    VALORES = [
+        "A", "2", "3", "4", "5", "6",
+        "7", "8", "9", "10", "J", "Q", "K"
+    ]
+
+    def __init__(self):
+        self.cartas = self.generar_mazo()
+
+    def generar_mazo(self):
+        return [
+            Carta(palo, valor)
+            for palo in self.PALOS
+            for valor in self.VALORES
+        ]
+
+    def mezclar(self):
+        random.shuffle(self.cartas)
+
+    def sacar_carta(self):
+
+        if self.cartas:
+            return self.cartas.pop()
+
+        return None
+
+    def reiniciar_mazo(self):
+        self.cartas = self.generar_mazo()
+        self.mezclar()
