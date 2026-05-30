@@ -1,14 +1,14 @@
 import flet as ft
 
 
-# Aquí centralizamos las animaciones del proyecto.
-# Esto ayuda a mantener consistencia visual.
+# Fábrica de animaciones reutilizables para toda la interfaz.
+# Centralizar los parámetros aquí garantiza coherencia visual entre componentes.
 class Animations:
 
     @staticmethod
     def card_move_animation():
         """
-        Animación estándar para movimiento de cartas.
+        Animación suave de 250ms para el desplazamiento de cartas entre pilas.
         """
 
         return ft.Animation(
@@ -19,7 +19,7 @@ class Animations:
     @staticmethod
     def card_flip_animation():
         """
-        Animación utilizada al voltear cartas.
+        Animación rápida de 180ms para voltear una carta boca arriba o abajo.
         """
 
         return ft.Animation(
@@ -30,7 +30,7 @@ class Animations:
     @staticmethod
     def win_animation():
         """
-        Animación especial para victoria.
+        Animación de 500ms con rebote final para celebrar la victoria del jugador.
         """
 
         return ft.Animation(

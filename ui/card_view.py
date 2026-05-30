@@ -9,9 +9,8 @@ from ui.styles import (
 )
 
 
-# Este componente representa visualmente una carta.
-# Aquí NO manejamos reglas del juego,
-# solamente apariencia y renderizado(Diseño de cartas y como luce de frente y de espaldas).
+# Componente visual de una carta individual, sin lógica de reglas.
+# Renderiza el anverso con rango y palo, o el reverso con fondo azul y texto decorativo.
 class CardView(ft.Container):
 
     def __init__(self, card):
@@ -20,7 +19,7 @@ class CardView(ft.Container):
 
         self.card = card
 
-        # Configuración visual base.
+        # Dimensiones y forma base del contenedor de la carta.
         self.width = CARD_WIDTH
         self.height = CARD_HEIGHT
 
@@ -28,28 +27,28 @@ class CardView(ft.Container):
 
         self.alignment = ft.alignment.center
 
-        # Pequeña sombra para dar profundidad visual.
+        # Sombra sutil para simular profundidad sobre el tablero.
         self.shadow = ft.BoxShadow(
             spread_radius=1,
             blur_radius=8,
             color=ft.Colors.BLACK26,
         )
 
-        # Construimos el contenido inicial.
+        # Renderizar la carta con su estado inicial.
         self.update_card_view()
 
     def update_card_view(self):
         """
-        Actualiza la apariencia de la carta
-        dependiendo de si está boca arriba o abajo.
+        Redibuja la carta según su estado actual.
+        Muestra el anverso si está boca arriba, o el reverso si está oculta.
         """
 
-        # Carta visible.
+        # Anverso: fondo blanco con rango y palo en el color del palo correspondiente.
         if self.card.face_up:
 
             self.bgcolor = CARD_FRONT_COLOR
 
-            # Elegimos color del texto según el palo.
+            # Palos rojos en rojo, palos negros en negro.
             text_color = (
                 ft.Colors.RED
                 if self.card.color == "red"
@@ -75,7 +74,7 @@ class CardView(ft.Container):
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             )
 
-        # Carta boca abajo.
+        # Reverso: fondo azul con texto decorativo que oculta el contenido.
         else:
 
             self.bgcolor = CARD_BACK_COLOR

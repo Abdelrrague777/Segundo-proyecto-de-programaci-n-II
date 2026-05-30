@@ -1,24 +1,23 @@
-# Aquí centralizamos los estilos visuales.
-# Esto ayuda muchísimo para mantener consistencia en toda la interfaz del juego.
+# Constantes visuales globales del juego.
+# Centralizar estilos aquí garantiza consistencia en toda la interfaz.
 
-# Dimensiones estándar de las cartas.
+# Dimensiones de las cartas en píxeles.
 CARD_WIDTH = 90
 CARD_HEIGHT = 130
 
-# Espaciado entre cartas del tableau.
+# Desplazamiento vertical entre cartas apiladas en el tableau.
 CARD_SPACING = 30
 
-# Color principal de la mesa.
-TABLE_COLOR = "#0B6623"
+# Colores principales de la interfaz.
+TABLE_COLOR = "#0B6623"        # Verde paño de la mesa.
+CARD_FRONT_COLOR = "white"     # Fondo del anverso de la carta.
+CARD_BACK_COLOR = "#1E3A8A80"  # Fondo del reverso, azul semitransparente.
 
-# Colores auxiliares.
-CARD_FRONT_COLOR = "white"
-CARD_BACK_COLOR = "#1E3A8A80"
-
-# Bordes.
+# Radio de las esquinas redondeadas de las cartas en píxeles.
 CARD_BORDER_RADIUS = 10
 
-# Sombras y transparencia.
+# Intensidad del desenfoque en la sombra proyectada por las cartas.
 CARD_SHADOW_BLUR = 8
 
+# Duplica el valor de CARD_BACK_COLOR, considerar eliminar esta constante.
 CARD_BACK_OPACITY = "#1E3A8A80"
