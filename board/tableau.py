@@ -1,25 +1,23 @@
-# Esta clase representa una columna del tableau.
-# Aquí se almacenan las cartas principales del juego.
+# Columna del tableau: una de las siete pilas centrales del tablero
+# donde se construyen secuencias descendentes de colores alternados.
 class TableauPile:
 
     def __init__(self):
 
-        # Lista de cartas dentro de la columna.
+        # Secuencia de cartas de la columna, de base (índice 0) a cima.
         self.cards = []
 
     def add_cards(self, cards):
         """
-        Agrega una o varias cartas al final de la columna.
+        Apila una o varias cartas al tope de la columna.
         """
 
         self.cards.extend(cards)
 
     def remove_cards(self, start_index):
         """
-        Remueve un grupo de cartas desde cierto índice.
-
-        Esto es importante porque en Solitaire
-        pueden moverse varias cartas juntas.
+        Extrae y retorna el segmento de cartas desde start_index hasta la cima.
+        Permite mover secuencias completas entre columnas del tableau.
         """
 
         removed_cards = self.cards[start_index:]
@@ -30,7 +28,7 @@ class TableauPile:
 
     def top_card(self):
         """
-        Retorna la carta superior de la columna.
+        Retorna la carta en la cima de la columna, o None si está vacía.
         """
 
         if self.cards:
@@ -40,8 +38,8 @@ class TableauPile:
 
     def reveal_top_card(self):
         """
-        Si la carta superior está oculta,
-        la voltea automáticamente.
+        Voltea la carta de la cima si está oculta.
+        Se llama automáticamente tras mover o remover cartas de la columna.
         """
 
         if self.cards and not self.cards[-1].face_up:
@@ -49,7 +47,7 @@ class TableauPile:
 
     def is_empty(self):
         """
-        Verifica si la columna está vacía.
+        Retorna True si la columna no contiene cartas.
         """
 
         return len(self.cards) == 0

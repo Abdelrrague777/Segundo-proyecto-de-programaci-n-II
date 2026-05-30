@@ -1,23 +1,23 @@
-# Esta clase representa una foundation.
-# Las foundations son las pilas finales
-# donde se organizan las cartas por palo.
+# Pila de destino final del solitario.
+# Agrupa cartas de un mismo palo en orden ascendente (A → K).
+# El juego se gana cuando las cuatro foundations están completas.
 class FoundationPile:
 
     def __init__(self):
 
-        # Cartas actuales de la foundation.
+        # Secuencia de cartas del palo, de As (índice 0) a Rey (cima).
         self.cards = []
 
     def push_card(self, card):
         """
-        Agrega una carta a la foundation.
+        Coloca una carta en la cima de la foundation.
         """
 
         self.cards.append(card)
 
     def pop_card(self):
         """
-        Remueve la carta superior.
+        Retira y retorna la carta de la cima, o None si la foundation está vacía.
         """
 
         if self.cards:
@@ -27,7 +27,7 @@ class FoundationPile:
 
     def top_card(self):
         """
-        Retorna la carta superior actual.
+        Retorna la carta en la cima de la foundation, o None si está vacía.
         """
 
         if self.cards:
@@ -37,7 +37,7 @@ class FoundationPile:
 
     def is_empty(self):
         """
-        Verifica si la foundation está vacía.
+        Retorna True si la foundation no contiene cartas aún.
         """
 
         return len(self.cards) == 0

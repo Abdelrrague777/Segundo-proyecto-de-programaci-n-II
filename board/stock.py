@@ -1,26 +1,25 @@
-# Esta clase administra el stock principal
-# y también el waste pile.
+# Gestiona el stock (mazo oculto) y el waste pile (cartas descartadas visibles).
 class StockPile:
 
     def __init__(self, cards):
 
-        # Cartas restantes del mazo.
+        # Mazo principal boca abajo; se roba de aquí durante el juego.
         self.stock = cards
 
-        # Cartas reveladas.
+        # Pila de descarte; contiene las cartas robadas boca arriba.
         self.waste = []
 
     def draw_from_stock(self):
         """
-        Toma una carta del stock
-        y la mueve al waste.
+        Roba la carta superior del stock y la transfiere al waste pile.
+        Retorna la carta robada, o None si el stock está vacío.
         """
 
         if self.stock:
 
             card = self.stock.pop()
 
-            # La carta debe mostrarse boca arriba.
+            # Voltear la carta al pasarla al waste.
             card.face_up = True
 
             self.waste.append(card)
@@ -31,15 +30,14 @@ class StockPile:
 
     def reset_stock(self):
         """
-        Cuando el stock se vacía,
-        reutilizamos las cartas del waste.
+        Recicla el waste pile devolviéndolo al stock en orden inverso
+        cuando el mazo principal se agota.
         """
 
-        # Invertimos las cartas para conservar
-        # el orden correcto del juego.
+        # Revertir el waste conserva el orden original de robo.
         self.stock = list(reversed(self.waste))
 
-        # Todas vuelven boca abajo.
+        # Las cartas regresan al stock boca abajo.
         for card in self.stock:
             card.face_up = False
 
@@ -47,7 +45,8 @@ class StockPile:
 
     def top_waste_card(self):
         """
-        Retorna la carta superior del waste.
+        Retorna la carta visible en la cima del waste pile,
+        o None si el waste está vacío.
         """
 
         if self.waste:
