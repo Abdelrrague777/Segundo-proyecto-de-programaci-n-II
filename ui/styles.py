@@ -1,6 +1,5 @@
-# Aquí centralizamos todos los estilos visuales.
-# Esto ayuda muchísimo para mantener consistencia
-# en toda la interfaz del juego.
+# Aquí centralizamos los estilos visuales.
+# Esto ayuda muchísimo para mantener consistencia en toda la interfaz del juego.
 
 # Dimensiones estándar de las cartas.
 CARD_WIDTH = 90
