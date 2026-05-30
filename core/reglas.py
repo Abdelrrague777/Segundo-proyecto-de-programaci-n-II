@@ -14,7 +14,7 @@ VALORES_CARTAS = {
     "K": 13,
 }
 
-class ReglasJuego:
+class GameRules:
 
     @staticmethod
     def puede_mover_a_columna(carta, carta_destino):

@@ -8,9 +8,6 @@ from ui.styles import (
     CARD_BORDER_RADIUS,
 )
 
-
-# Componente visual de una carta individual, sin lógica de reglas.
-# Renderiza el anverso con rango y palo, o el reverso con fondo azul y texto decorativo.
 class CardView(ft.Container):
 
     def __init__(self, card):
@@ -19,53 +16,46 @@ class CardView(ft.Container):
 
         self.card = card
 
-        # Dimensiones y forma base del contenedor de la carta.
         self.width = CARD_WIDTH
         self.height = CARD_HEIGHT
-
         self.border_radius = CARD_BORDER_RADIUS
 
-        self.alignment = ft.alignment.center
+        # Alineación del contenedor usando la clase compatible
+        self.alignment = ft.Alignment(0, 0)
 
-        # Sombra sutil para simular profundidad sobre el tablero.
         self.shadow = ft.BoxShadow(
             spread_radius=1,
             blur_radius=8,
             color=ft.Colors.BLACK26,
         )
 
-        # Renderizar la carta con su estado inicial.
         self.update_card_view()
 
     def update_card_view(self):
-        """
-        Redibuja la carta según su estado actual.
-        Muestra el anverso si está boca arriba, o el reverso si está oculta.
-        """
 
-        # Anverso: fondo blanco con rango y palo en el color del palo correspondiente.
         if self.card.face_up:
 
             self.bgcolor = CARD_FRONT_COLOR
 
-            # Palos rojos en rojo, palos negros en negro.
+            # Color del texto basado en el palo de la carta
             text_color = (
                 ft.Colors.RED
-                if self.card.color == "red"
+                if self.card.palo in ["corazones", "diamantes"]
                 else ft.Colors.BLACK
             )
+
 
             self.content = ft.Column(
                 controls=[
                     ft.Text(
-                        self.card.rank,
+                        self.card.valor,
                         size=22,
                         weight=ft.FontWeight.BOLD,
                         color=text_color,
                     ),
 
                     ft.Text(
-                        self.card.suit,
+                        self.card.palo,
                         size=18,
                         color=text_color,
                     ),
@@ -74,7 +64,6 @@ class CardView(ft.Container):
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             )
 
-        # Reverso: fondo azul con texto decorativo que oculta el contenido.
         else:
 
             self.bgcolor = CARD_BACK_COLOR

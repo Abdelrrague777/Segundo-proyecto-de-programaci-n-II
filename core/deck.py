@@ -1,7 +1,7 @@
 import random
 from core.cartas import Carta
 
-class Mazo:
+class Deck:
     PALOS = ["corazones", "diamantes", "trebols", "espadas"]
 
     VALORES = [
@@ -10,7 +10,7 @@ class Mazo:
     ]
 
     def __init__(self):
-        self.cartas = self.generar_mazo()
+        self.cards = self.generar_mazo()
 
     def generar_mazo(self):
         return [
@@ -19,15 +19,14 @@ class Mazo:
             for valor in self.VALORES
         ]
 
-    def mezclar(self):
-        random.shuffle(self.cartas)
+    def shuffle(self):
+        random.shuffle(self.cards)
 
     def sacar_carta(self):
-        if self.cartas:
-            return self.cartas.pop()
-
+        if self.cards:
+            return self.cards.pop()
         return None
 
     def reiniciar_mazo(self):
-        self.cartas = self.generar_mazo()
-        self.mezclar()
+        self.cards = self.generar_mazo()
+        self.shuffle()

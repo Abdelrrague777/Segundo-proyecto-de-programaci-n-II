@@ -1,39 +1,22 @@
-import random
+class Carta:
 
-class Mazo:
+    def __init__(self, palo, valor):
+        self.palo = palo
+        self.valor = valor
+        self.face_up = False
 
-    PALOS = [
-        "corazones",
-        "diamantes",
-        "treboles",
-        "espadas"
-    ]
+    def flip(self):
+        """Voltea la carta (cambia su estado de face_up)"""
+        self.face_up = not self.face_up
 
-    VALORES = [
-        "A", "2", "3", "4", "5", "6",
-        "7", "8", "9", "10", "J", "Q", "K"
-    ]
+    def __eq__(self, other):
+        """Permite a Python encontrar la carta en la lista al arrastrarla"""
+        if not isinstance(other, Carta):
+            return False
+        return self.valor == other.valor and self.palo == other.palo
 
-    def __init__(self):
-        self.cartas = self.generar_mazo()
+    def __str__(self):
+        return f"{self.valor} de {self.palo}"
 
-    def generar_mazo(self):
-        return [
-            Carta(palo, valor)
-            for palo in self.PALOS
-            for valor in self.VALORES
-        ]
-
-    def mezclar(self):
-        random.shuffle(self.cartas)
-
-    def sacar_carta(self):
-
-        if self.cartas:
-            return self.cartas.pop()
-
-        return None
-
-    def reiniciar_mazo(self):
-        self.cartas = self.generar_mazo()
-        self.mezclar()
+    def __repr__(self):
+        return self.__str__()
